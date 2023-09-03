@@ -187,7 +187,7 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 
 func main() {
 	ebiten.SetWindowSize(scr_width, scr_height)
-	ebiten.SetWindowTitle("Render an image")
+	ebiten.SetWindowTitle("overlaypong")
 	//transparency
 	ebiten.SetWindowResizable(false)
 	ebiten.SetWindowDecorated(false)
