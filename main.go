@@ -159,7 +159,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	ballop.GeoM.Translate(float64(g.ballPosX), float64(g.ballPosY))
 	screen.DrawImage(ball, ballop)
 
-	txttodraw := fmt.Sprintf("Player Points: %d\nPC Points: %d", g.leftpoints, g.rightpoints)
+	txttodraw := fmt.Sprintf("Player Points: %d\nCPU Points: %d", g.leftpoints, g.rightpoints)
 	txtwidth := text.BoundString(FontFace, txttodraw).Dx()
 	text.Draw(screen, txttodraw, FontFace, scr_width/2-txtwidth/2, 50, color.White)
 
