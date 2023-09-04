@@ -63,13 +63,13 @@ func isBallTouchingWall(bx, by, bw, bh int, g *Game) int {
 	/* 0 is left, 1 is right, 2 is top, 3 is bottom, -1 is not touching, 4 is touching left but die */
 	if bx <= 0 {
 		if g.elapsedFrames > 3 {
-			g.points--
+			g.rightpoints++
 		}
 		return 0
 	} else if bx <= paddle_padding && (by <= g.leftPaddleY+paddle.Bounds().Dy() && by >= g.leftPaddleY-paddle.Bounds().Dy()) {
 		return 0
 	} else if bx >= scr_width-bw {
-		g.points++
+		g.leftpoints++
 		return 1
 	} else if bx >= scr_width-bw-paddle_padding && (by <= g.rightPaddleY+paddle.Bounds().Dy() && by >= g.rightPaddleY-paddle.Bounds().Dy()) {
 		return 1
@@ -91,7 +91,8 @@ type Game struct {
 	rightPaddleY    int
 	leftPaddleX     int
 	leftPaddleY     int
-	points          int
+	leftpoints      int
+	rightpoints     int
 	elapsedFrames   int
 }
 
@@ -158,7 +159,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	ballop.GeoM.Translate(float64(g.ballPosX), float64(g.ballPosY))
 	screen.DrawImage(ball, ballop)
 
-	txttodraw := fmt.Sprintf("Points: %d", g.points)
+	txttodraw := fmt.Sprintf("Player Points: %d\nPC Points: %d", g.leftpoints, g.rightpoints)
 	txtwidth := text.BoundString(FontFace, txttodraw).Dx()
 	text.Draw(screen, txttodraw, FontFace, scr_width/2-txtwidth/2, 50, color.White)
 
